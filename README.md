@@ -18,13 +18,13 @@ docker run --rm -p 8080:8080 sepetrov/hello-world:latest
 Make a request to the running container. This will return the default response: `Hello World!`.
 
 ```bash
-curl -i http://localhost:8080                                                                                        
+curl -i http://localhost:8080
 HTTP/1.1 200 OK
 Content-Type: text/plain
 Date: Tue, 30 Dec 2025 09:34:46 GMT
 Content-Length: 12
 
-Hello World! 
+Hello World!
 ```
 
 ## Configuration

@@ -24,7 +24,7 @@ type RequestLogHandler struct {
 type RealTimer struct{}
 
 func (RealTimer) Now() time.Time {
-	return time.Now()
+	return time.Now().UTC()
 }
 
 func NewRequestLogHandler(handler http.Handler, timer Timer, logger Logger) http.Handler {
@@ -40,8 +40,14 @@ func (h RequestLogHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	h.handler.ServeHTTP(rw, r)
 
-	h.logger.Printf("%s - - [%s] \"%s %s %s\" %d %d",
+	identity := "-"
+	if ua := r.UserAgent(); ua != "" {
+		identity = ua
+	}
+
+	h.logger.Printf("%s - %s [%s] \"%s %s %s\" %d %d",
 		r.RemoteAddr,
+		identity,
 		h.timer.Now().Format(timeFormat),
 		r.Method,
 		r.URL.String(),

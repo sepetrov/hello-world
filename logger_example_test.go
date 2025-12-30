@@ -29,11 +29,13 @@ func ExampleRequestLogHandler_ServeHTTP() {
 
 	logHandler := hw.NewRequestLogHandler(handler, timer, logger)
 
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
+	req := httptest.NewRequest(http.MethodGet, "/foo?status_code=201", nil)
 	req.RemoteAddr = "192.168.1.100:54321"
+	req.Header.Set("User-Agent", "TestAgent/1.0")
+
 	w := httptest.NewRecorder()
 
 	logHandler.ServeHTTP(w, req)
 
-	// Output: 192.168.1.100:54321 - - [10/Oct/2024:13:55:36 -0700] "GET / HTTP/1.1" 201 13
+	// Output: 192.168.1.100:54321 - TestAgent/1.0 [10/Oct/2024:13:55:36 -0700] "GET /foo?status_code=201 HTTP/1.1" 201 13
 }

@@ -56,6 +56,8 @@ func TestRequestLogHandler_ServeHTTP(t *testing.T) {
 			handler := hw.NewRequestLogHandler(tt.handler, timer, logger)
 
 			req := httptest.NewRequest(tt.method, tt.path, nil)
+			req.Header.Set("User-Agent", "TestAgent/1.0")
+
 			w := httptest.NewRecorder()
 
 			handler.ServeHTTP(w, req)
@@ -71,7 +73,7 @@ func TestRequestLogHandler_ServeHTTP(t *testing.T) {
 			logOutput := buf.String()
 			t.Log(logOutput)
 
-			pattern := `\d+\.\d+\.\d+\.\d+:\d+ - - \[\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} [+-]\d{4}\] "` +
+			pattern := `\d+\.\d+\.\d+\.\d+:\d+ - .* \[\d{2}/\w{3}/\d{4}:\d{2}:\d{2}:\d{2} [+-]\d{4}\] "` +
 				tt.method + ` ` + regexp.QuoteMeta(tt.path) + ` HTTP/1\.1" ` +
 				`\d+ \d+`
 
