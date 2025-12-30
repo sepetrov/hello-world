@@ -9,10 +9,10 @@ Pull and run the container from Docker Hub:
 
 ```bash
 docker run --rm -p 8080:8080 sepetrov/hello-world:latest
-2025/12/30 09:34:00 default content type: text/plain
-2025/12/30 09:34:00 default status code: 200
-2025/12/30 09:34:00 default response body: Hello World!
-2025/12/30 09:34:00 start listening on port 8080
+default content type: text/plain
+default status code: 200
+default response body: Hello World!
+start listening on port 8080
 ```
 
 Make a request to the running container. This will return the default response: `Hello World!`.
@@ -37,10 +37,10 @@ The response can be customized using environment variables:
 
 ```bash
 docker run --rm -p 8080:8088 -e SERVER_PORT=8088 -e CONTENT_TYPE=application/json -e STATUS_CODE=201 -e RESPONSE_BODY='{"status":"ok"}' sepetrov/hello-world:latest
-2025/12/30 09:48:08 default content type: application/json
-2025/12/30 09:48:08 default status code: 201
-2025/12/30 09:48:08 default response body: {"status":"ok"}
-2025/12/30 09:48:08 start listening on port 8088
+default content type: application/json
+default status code: 201
+default response body: {"status":"ok"}
+start listening on port 8088
 ```
 
 ```bash
