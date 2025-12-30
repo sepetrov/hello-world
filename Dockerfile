@@ -6,7 +6,7 @@ COPY . .
 
 RUN mkdir -p bin && \
     rm -frv bin/* && \
-    go build -o ./bin/hello-world ./main.go
+    go build -o ./bin/hello-world ./cmd/main.go
 
 FROM debian:trixie
 
