@@ -53,7 +53,9 @@ Content-Length: 15
 {"status":"ok"}
 ```
 
-Alternatively, the response can be customised by the caller using query parameters:
+## Request-time Customisation
+
+Alternatively, the response can be customised by the caller using query or POST parameters:
 - `content_type`: sets the `Content-Type` header
 - `status_code`: sets the HTTP status code
 - `response_body`: sets the response body
