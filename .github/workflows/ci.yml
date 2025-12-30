@@ -10,7 +10,7 @@ on:
 
 jobs:
   lint:
-    name: Lint Go code
+    name: Lint code
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
