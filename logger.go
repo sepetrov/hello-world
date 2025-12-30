@@ -27,7 +27,7 @@ func (RealTimer) Now() time.Time {
 	return time.Now().UTC()
 }
 
-func NewRequestLogHandler(handler http.Handler, timer Timer, logger Logger) http.Handler {
+func NewRequestLogHandler(handler http.Handler, timer Timer, logger Logger) RequestLogHandler {
 	return RequestLogHandler{
 		handler: handler,
 		logger:  logger,
