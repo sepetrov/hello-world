@@ -9,7 +9,6 @@ Pull and run the container from Docker Hub:
 
 ```bash
 docker run --rm -p 8080:8080 sepetrov/hello-world:latest
-run --rm -p 8080:8080 sepetrov/hello-world:latest          
 2025/12/30 09:34:00 default content type: text/plain
 2025/12/30 09:34:00 default status code: 200
 2025/12/30 09:34:00 default response body: Hello World!
