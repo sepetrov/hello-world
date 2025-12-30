@@ -24,7 +24,7 @@ func TestRequestLogHandler_ServeHTTP(t *testing.T) {
 			name:           "GET request with 200 response",
 			method:         http.MethodGet,
 			path:           "/?foo=bar",
-			handler:        http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("Hello")) }),
+			handler:        http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { _, _ = w.Write([]byte("Hello")) }),
 			wantStatusCode: http.StatusOK,
 			wantBody:       "Hello",
 		},
