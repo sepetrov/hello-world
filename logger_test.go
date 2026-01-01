@@ -82,7 +82,7 @@ func TestRequestLogHandler_ServeHTTP(t *testing.T) {
 				t.Fatalf("regex error: %v", err)
 			}
 			if !matched {
-				t.Errorf("log output does not match Apache format:\n%s", logOutput)
+				t.Errorf("log output does not match expected format:\n%s", logOutput)
 			}
 		})
 	}
