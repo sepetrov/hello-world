@@ -10,18 +10,22 @@ import (
 )
 
 func main() {
+	logger := log.New(log.Writer(), "", 0)
+
 	h, err := hw.NewHandler()
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 
-	log.Printf("default content type: %s\n", h.ContentType)
-	log.Printf("default status code: %d\n", h.StatusCode)
-	log.Printf("default response body: %s\n", h.ResponseBody)
+	lh := hw.NewRequestLogHandler(h, hw.RealTimer{}, logger)
 
-	log.Printf("start listening on port %v\n", h.ServerPort)
+	logger.Printf("default content type: %s\n", h.ContentType)
+	logger.Printf("default status code: %d\n", h.StatusCode)
+	logger.Printf("default response body: %s\n", h.ResponseBody)
 
-	if err := http.ListenAndServe(fmt.Sprintf(":%d", h.ServerPort), h); !errors.Is(err, http.ErrServerClosed) {
-		log.Fatalf("ListenAndServe: %v", err)
+	logger.Printf("start listening on port %v\n", h.ServerPort)
+
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", h.ServerPort), lh); !errors.Is(err, http.ErrServerClosed) {
+		logger.Fatalf("ListenAndServe: %v", err)
 	}
 }
