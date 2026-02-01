@@ -21,6 +21,7 @@ func main() {
 	logger.Printf("config: default status code: %d\n", config.StatusCode)
 	logger.Printf("config: default response body: %s\n", config.ResponseBody)
 	logger.Printf("config: with robots.txt: %v\n", config.WithRobots)
+	logger.Printf("config: with runtime config: %v\n", config.WithRuntimeConfig)
 
 	var handler http.Handler
 
