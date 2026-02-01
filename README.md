@@ -19,6 +19,7 @@ docker run --rm -p 8080:8080 sepetrov/hello-world:latest
 2026/02/01 08:36:02 config: default status code: 200
 2026/02/01 08:36:02 config: default response body: Hello World!
 2026/02/01 08:36:02 config: with robots.txt: false
+2026/02/01 08:36:02 config: with runtime config: false
 2026/02/01 08:36:02 start listening on port 8080
 10.0.2.100:44474 - curl/8.5.0 [01/Feb/2026:08:38:40 +0000] "GET / HTTP/1.1" 201 15
 ```
@@ -43,6 +44,7 @@ The response can be customized using environment variables:
 - `STATUS_CODE`: sets the HTTP status code (default: `200`)
 - `RESPONSE_BODY`: sets the response body (default: `Hello World!`)
 - `WITH_ROBOTS_TXT`: if set to `true`, serves a `robots.txt` file disallowing all crawlers at the `/robots.txt` endpoint (default: `false`)
+- `WITH_RUNTIME_CONFIG`: if set to `true`, enables request-time customization of the response via query or POST parameters (default: `false`)
 
 ```bash
 docker run --rm -p 8080:8088 -e SERVER_PORT=8088 -e CONTENT_TYPE=application/json -e STATUS_CODE=201 -e RESPONSE_BODY='{"status":"ok"}' -e WITH_ROBOTS_TXT=true sepetrov/hello-world:latest
@@ -78,7 +80,7 @@ Disallow: /
 
 ## Request-time Customisation
 
-Alternatively, the response can be customised by the caller using query or POST parameters:
+If `WITH_RUNTIME_CONFIG=true`, the response can be customised by the caller using query or POST parameters:
 - `content_type`: sets the `Content-Type` header
 - `status_code`: sets the HTTP status code
 - `response_body`: sets the response body
