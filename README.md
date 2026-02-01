@@ -84,19 +84,9 @@ Alternatively, the response can be customised by the caller using query or POST 
 - `response_body`: sets the response body
 
 ```bash
-curl -i 'http://localhost:8080?status_code=404&response_body=%7B%22status%22%3A%22not%20found%22%7D'                        
+curl -i 'http://localhost:8080?status_code=404' -d 'response_body=Not Found'
 HTTP/1.1 404 Not Found
-Content-Type: application/json
-Date: Sun, 01 Feb 2026 08:38:40 GMT
-Content-Length: 22
-
-{"status":"not found"}
-```
-
-```bash
-curl -i http://localhost:8080 -d 'status_code=404&response_body={"status":"not found"}'             
-HTTP/1.1 404 Not Found
-Content-Type: application/json
+Content-Type: text/plain
 Date: Sun, 01 Feb 2026 08:38:40 GMT
 Content-Length: 22
 
